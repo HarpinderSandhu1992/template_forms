@@ -6,7 +6,12 @@ import { Component } from '@angular/core';
   styleUrl: './tdf.component.css',
 })
 export class TdfComponent {
-  onSubmit(formData: any) {
-    console.log('Form Submitted', formData.value);
+  onSubmit() {
+    console.log(this.person);
   }
+  person = {
+    email: '',
+    password: '',
+  }
+
 }

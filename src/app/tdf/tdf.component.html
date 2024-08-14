@@ -1,5 +1,5 @@
 <!-- USE TEMPLATE REFERENCE VARIABLE TO GIVE ASS TO FORMGROUP VALUES -->
-<form #survey="ngForm" (ngSubmit)="onSubmit(survey)">
+<form #survey="ngForm" (ngSubmit)="onSubmit()">
   <div class="mb-3">
     <label for="email" class="form-label">Email address</label>
     <input
@@ -8,9 +8,24 @@
       id="email"
       aria-describedby="emailHelp"
       name="email"
-      ngModel
+      [(ngModel)]="person.email"
+      #personEmail="ngModel"
+      required
     />
   </div>
+  <div
+    class="alert alert-danger"
+    *ngIf="personEmail.invalid && personEmail.touched"
+  >
+    Email is required
+  </div>
+  <div *ngIf="personEmail.errors && personEmail.errors['required']">
+    Email is required
+  </div>
+  <div *ngIf="personEmail.errors && personEmail.errors['minlength']">
+    Email is min 5 characters
+  </div>
+
   <label for="gender">Gender</label>
   <select class="form-control" id="gender" name="gender" ngModel>
     <option>Male</option>
@@ -39,7 +54,9 @@
       ngModel
     />
   </div>
-  <button type="submit" class="btn btn-primary">Submit</button>
+  <button type="submit" (click)="onSubmit()" class="btn btn-primary">
+    Submit
+  </button>
 </form>
 
 <pre> {{ survey.value | json }} </pre>
