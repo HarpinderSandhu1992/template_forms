@@ -1,0 +1,45 @@
+<!-- USE TEMPLATE REFERENCE VARIABLE TO GIVE ASS TO FORMGROUP VALUES -->
+<form #survey="ngForm" (ngSubmit)="onSubmit(survey)">
+  <div class="mb-3">
+    <label for="email" class="form-label">Email address</label>
+    <input
+      type="email"
+      class="form-control"
+      id="email"
+      aria-describedby="emailHelp"
+      name="email"
+      ngModel
+    />
+  </div>
+  <label for="gender">Gender</label>
+  <select class="form-control" id="gender" name="gender" ngModel>
+    <option>Male</option>
+    <option>Female</option>
+  </select>
+  <div class="form-group">
+    <label for="Age">Age</label>
+    <input
+      type="number"
+      class="form-control"
+      id="age"
+      placeholder="age"
+      min="18"
+      max="120"
+      name="age"
+      ngModel
+    />
+  </div>
+  <div class="mb-3">
+    <label for="password" class="form-label">Password</label>
+    <input
+      type="password"
+      class="form-control"
+      id="password"
+      name="password"
+      ngModel
+    />
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+<pre> {{ survey.value | json }} </pre>
